@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const villa_1 = require("../../controllers/villa");
+const middlewares_1 = require("../../middlewares");
+const router = (0, express_1.Router)();
+router.get('/', middlewares_1.middleware.useAuthorization, villa_1.villaControllers.findAll);
+router.get('/public', villa_1.villaControllers.findAllPublic);
+router.get('/detail/:villaId', middlewares_1.middleware.useAuthorization, villa_1.villaControllers.findOne);
+router.post('/', middlewares_1.middleware.useAuthorization, villa_1.villaControllers.create);
+router.patch('/', middlewares_1.middleware.useAuthorization, villa_1.villaControllers.update);
+router.delete('/:villaId', middlewares_1.middleware.useAuthorization, villa_1.villaControllers.remove);
+exports.default = router;

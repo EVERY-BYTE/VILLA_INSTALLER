@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const marketing_1 = require("../../controllers/marketing");
+const middlewares_1 = require("../../middlewares");
+const router = (0, express_1.Router)();
+router.get('/', marketing_1.marketingControllers.findAll);
+router.get('/detail/:marketingId', marketing_1.marketingControllers.findOne);
+router.post('/', middlewares_1.middleware.useAuthorization, marketing_1.marketingControllers.create);
+router.patch('/', middlewares_1.middleware.useAuthorization, marketing_1.marketingControllers.update);
+router.delete('/:marketingId', middlewares_1.middleware.useAuthorization, marketing_1.marketingControllers.remove);
+exports.default = router;
